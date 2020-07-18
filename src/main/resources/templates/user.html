@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Ilvermory</title>
+    <title>Secure Area</title>
 </head>
 <body>
-<h2>Hello <span th:text="${username}"/>!</h2>
+<h1>Welcome back, <span th:text="${firstName}"/> <span th:text="${lastName}"/>!</h1>
+<h2>Username: <b><span th:text="${username}"/></b> <code>[<span th:text="${uuid}"/>]</code>.</h2>
 </body>
 </html>
