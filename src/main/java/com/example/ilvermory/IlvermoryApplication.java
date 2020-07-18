@@ -1,6 +1,5 @@
 package com.example.ilvermory;
 
-import com.example.ilvermory.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,9 +19,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class IlvermoryApplication extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private UserRepository userRepository;
-
 	public static void main(String[] args) {
 		SpringApplication.run(IlvermoryApplication.class, args);
 	}
@@ -41,7 +37,7 @@ public class IlvermoryApplication extends WebSecurityConfigurerAdapter {
 		return new UserDetailsService() {
 			@Override
 			public UserDetails loadUserByUsername(String username) {
-				if (username.compareTo("Karlos Erdeva") == 0) {
+				if (username.compareTo("WERB3011") == 0) {
 					return new User(username, "",
 							AuthorityUtils
 									.commaSeparatedStringToAuthorityList("ROLE_USER"));
