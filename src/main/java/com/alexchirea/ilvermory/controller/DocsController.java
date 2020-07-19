@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/docs")
 public class DocsController {
 
-    @PreAuthorize(value = "hasAuthority('ROLE_USER')")
+    @PreAuthorize(value = "hasAuthority('ROLE_ADMIN')")
     @GetMapping
     public String getDocsPage() {
         return "docs";

@@ -1,5 +1,7 @@
 package com.alexchirea.ilvermory;
 
+import com.alexchirea.ilvermory.service.RoleService;
+import com.alexchirea.ilvermory.service.RoleUserService;
 import com.alexchirea.ilvermory.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -9,10 +11,13 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import java.util.List;
 
 @SpringBootApplication
 @EnableWebSecurity
@@ -21,6 +26,9 @@ public class IlvermoryApplication extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private RoleUserService roleUserService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(IlvermoryApplication.class, args);
@@ -32,16 +40,18 @@ public class IlvermoryApplication extends WebSecurityConfigurerAdapter {
 				.and()
 				.x509()
 				.subjectPrincipalRegex("CN=(.*?)(?:,|$)")
-				.userDetailsService(userDetailsService());
+				.userDetailsService(userDetailsService())
+				.and()
+				.exceptionHandling().accessDeniedPage("/404");
 	}
 
 	@Bean
 	public UserDetailsService userDetailsService() {
 		return username -> {
 			if (userService.findByCN(username) != null) {
-				return new User(username, "",
-						AuthorityUtils
-								.commaSeparatedStringToAuthorityList("ROLE_USER"));
+				List<GrantedAuthority> authorities = AuthorityUtils.
+						commaSeparatedStringToAuthorityList(roleUserService.getRoleCodeCommaSeparated(username));
+				return new User(username, "", authorities);
 			}
 			throw new UsernameNotFoundException("User not found!");
 		};
