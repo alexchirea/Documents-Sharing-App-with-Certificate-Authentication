@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
 
 @Controller
+@RequestMapping(value = "/users")
 public class UserController {
 
     private final UserService userService;
@@ -21,13 +23,13 @@ public class UserController {
     }
 
     @PreAuthorize(value = "hasAuthority('ROLE_USER')")
-    @RequestMapping(value = "/user")
+    @GetMapping(value = "/profile")
     public String user(Model model, Principal principal) {
         User user = userService.findByCN(principal.getName());
         model.addAttribute("uuid", user.getId());
         model.addAttribute("username", user.getCommonName());
         model.addAttribute("firstName", user.getFirstName());
         model.addAttribute("lastName", user.getLastName());
-        return "user";
+        return "profile";
     }
 }
