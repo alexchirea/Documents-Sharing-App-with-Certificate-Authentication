@@ -1,6 +1,6 @@
-package com.example.ilvermory.repository;
+package com.alexchirea.ilvermory.repository;
 
-import com.example.ilvermory.model.User;
+import com.alexchirea.ilvermory.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
-package com.example.ilvermory.model;
+package com.alexchirea.ilvermory.model;
 
-import com.example.ilvermory.config.UUIDGenerator;
+import com.alexchirea.ilvermory.config.UUIDGenerator;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

@@ -1,4 +1,4 @@
-package com.example.ilvermory;
+package com.alexchirea.ilvermory;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
