@@ -4,6 +4,7 @@ import com.example.ilvermory.config.UUIDGenerator;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "t_user")
@@ -71,5 +72,21 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return getId().equals(user.getId()) &&
+                getCommonName().equals(user.getCommonName()) &&
+                getFirstName().equals(user.getFirstName()) &&
+                getLastName().equals(user.getLastName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getCommonName(), getFirstName(), getLastName());
     }
 }

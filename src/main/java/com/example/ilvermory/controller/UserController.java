@@ -13,10 +13,14 @@ import java.security.Principal;
 @Controller
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @PreAuthorize(value = "hasAuthority('ROLE_USER')")
     @RequestMapping(value = "/user")
     public String user(Model model, Principal principal) {
         User user = userService.findByCN(principal.getName());

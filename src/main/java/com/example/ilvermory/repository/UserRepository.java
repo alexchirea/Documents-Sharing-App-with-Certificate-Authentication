@@ -1,11 +1,12 @@
 package com.example.ilvermory.repository;
 
 import com.example.ilvermory.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.io.Serializable;
+
 @Repository
-public interface UserRepository extends JpaRepository<User, String> {
-    User findByCommonNameEquals(String commonName);
-    User save(User user);
+public interface UserRepository extends CrudRepository<User, Serializable> {
+    User findUserByCommonNameEquals(String commonName);
 }
