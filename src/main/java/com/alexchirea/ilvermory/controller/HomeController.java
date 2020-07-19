@@ -15,4 +15,9 @@ public class HomeController {
         return "index";
     }
 
+    @RequestMapping("/404")
+    public String accessDenied() {
+        return "not-found";
+    }
+
 }

@@ -4,18 +4,16 @@ import com.alexchirea.ilvermory.config.UUIDGenerator;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "t_user")
-public class User {
+public class User extends BaseEntityModel {
 
-    private static final long serialVersionUID = -5696348089890495565L;
-
-    @Id
-    @GeneratedValue(generator = UUIDGenerator.generatorName)
-    @GenericGenerator(name = UUIDGenerator.generatorName, strategy = "com.alexchirea.ilvermory.config.UUIDGenerator")
-    private String id;
+    private static final long serialVersionUID = -6368037774457761174L;
 
     @Column(nullable = false)
     private String commonName;
@@ -26,6 +24,9 @@ public class User {
     @Column(nullable = false)
     private String lastName;
 
+    @OneToMany(mappedBy = "role")
+    Set<RoleUser> roleUserSet;
+
     public User() {
     }
 
@@ -33,21 +34,6 @@ public class User {
         this.commonName = commonName;
         this.firstName = firstName;
         this.lastName = lastName;
-    }
-
-    public User(String id, String commonName, String firstName, String lastName) {
-        this.id = id;
-        this.commonName = commonName;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getCommonName() {
@@ -74,19 +60,26 @@ public class User {
         this.lastName = lastName;
     }
 
+    public Set<RoleUser> getRoleUserSet() {
+        return roleUserSet;
+    }
+
+    public void setRoleUserSet(Set<RoleUser> roleUserSet) {
+        this.roleUserSet = roleUserSet;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return getId().equals(user.getId()) &&
-                getCommonName().equals(user.getCommonName()) &&
+        return getCommonName().equals(user.getCommonName()) &&
                 getFirstName().equals(user.getFirstName()) &&
                 getLastName().equals(user.getLastName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getCommonName(), getFirstName(), getLastName());
+        return Objects.hash(getCommonName(), getFirstName(), getLastName());
     }
 }
