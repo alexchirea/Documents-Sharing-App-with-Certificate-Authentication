@@ -14,7 +14,7 @@ public class User {
 
     @Id
     @GeneratedValue(generator = UUIDGenerator.generatorName)
-    @GenericGenerator(name = UUIDGenerator.generatorName, strategy = "com.example.ilvermory.config.UUIDGenerator")
+    @GenericGenerator(name = UUIDGenerator.generatorName, strategy = "com.alexchirea.ilvermory.config.UUIDGenerator")
     private String id;
 
     @Column(nullable = false)
