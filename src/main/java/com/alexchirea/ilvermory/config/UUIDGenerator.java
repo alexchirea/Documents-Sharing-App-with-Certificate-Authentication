@@ -1,4 +1,4 @@
-package com.example.ilvermory.config;
+package com.alexchirea.ilvermory.config;
 
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;

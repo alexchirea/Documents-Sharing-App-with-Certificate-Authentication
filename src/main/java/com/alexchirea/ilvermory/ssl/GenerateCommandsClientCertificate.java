@@ -1,4 +1,4 @@
-package com.example.ilvermory.ssl;
+package com.alexchirea.ilvermory.ssl;
 
 import java.util.Scanner;
 

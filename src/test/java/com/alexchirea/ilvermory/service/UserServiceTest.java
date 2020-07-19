@@ -1,20 +1,16 @@
-package com.example.ilvermory.service;
+package com.alexchirea.ilvermory.service;
 
-import com.example.ilvermory.data.TestDataUsers;
-import com.example.ilvermory.model.User;
-import com.example.ilvermory.repository.UserRepository;
+import com.alexchirea.ilvermory.data.TestDataUsers;
+import com.alexchirea.ilvermory.repository.UserRepository;
+import com.alexchirea.ilvermory.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.UUID;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

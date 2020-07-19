@@ -1,11 +1,10 @@
-package com.example.ilvermory.data;
+package com.alexchirea.ilvermory.data;
 
-import com.example.ilvermory.model.User;
+import com.alexchirea.ilvermory.model.User;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 public class TestDataUsers {
 

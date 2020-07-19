@@ -1,7 +1,7 @@
-package com.example.ilvermory.controller;
+package com.alexchirea.ilvermory.controller;
 
-import com.example.ilvermory.model.User;
-import com.example.ilvermory.service.UserService;
+import com.alexchirea.ilvermory.service.UserService;
+import com.alexchirea.ilvermory.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
