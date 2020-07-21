@@ -1,34 +1,34 @@
-package com.alexchirea.ilvermory.controller;
+package com.alexchirea.ilvermory.controller.api;
 
 import com.alexchirea.ilvermory.model.Document;
 import com.alexchirea.ilvermory.model.enums.DocumentClassification;
 import com.alexchirea.ilvermory.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
-@RequestMapping(value = "/docs")
-public class DocsController {
+@RestController
+@RequestMapping("/api/docs")
+public class DocsApiController {
 
     private DocumentService documentService;
 
     @Autowired
-    public DocsController(DocumentService documentService) {
+    public DocsApiController(DocumentService documentService) {
         this.documentService = documentService;
     }
 
     @PreAuthorize(value = "hasAnyAuthority('ROLE_USER', 'ROLE_MOD', 'ROLE_ADMIN')")
     @GetMapping
-    public String getDocsPage(Model model, Principal principal, HttpServletRequest request) {
+    public ResponseEntity<List<Document>> getAll(HttpServletRequest request) {
         List<Document> documents = new ArrayList<>();
         if (request.isUserInRole("ROLE_USER")) {
             documents = documentService.findAllByClassification(DocumentClassification.OPEN);
@@ -37,8 +37,7 @@ public class DocsController {
         } else if (request.isUserInRole("ROLE_ADMIN")) {
             documents = documentService.findAllByClassification(DocumentClassification.CONFIDENTIAL);
         }
-        model.addAttribute("documents", documents);
-        return "docs";
+        return new ResponseEntity<>(documents, HttpStatus.OK);
     }
 
 }

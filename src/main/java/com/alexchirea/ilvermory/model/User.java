@@ -1,11 +1,6 @@
 package com.alexchirea.ilvermory.model;
 
-import com.alexchirea.ilvermory.config.UUIDGenerator;
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -13,7 +8,7 @@ import java.util.Set;
 @Table(name = "t_user")
 public class User extends BaseEntityModel {
 
-    private static final long serialVersionUID = -6368037774457761174L;
+    private static final long serialVersionUID = -4306815897133551835L;
 
     @Column(nullable = false)
     private String commonName;
@@ -26,6 +21,10 @@ public class User extends BaseEntityModel {
 
     @OneToMany(mappedBy = "role")
     Set<RoleUser> roleUserSet;
+
+    @OneToMany
+    @JoinColumn(name = "document_id")
+    Set<Document> documents;
 
     public User() {
     }
@@ -66,6 +65,14 @@ public class User extends BaseEntityModel {
 
     public void setRoleUserSet(Set<RoleUser> roleUserSet) {
         this.roleUserSet = roleUserSet;
+    }
+
+    public Set<Document> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(Set<Document> documents) {
+        this.documents = documents;
     }
 
     @Override
