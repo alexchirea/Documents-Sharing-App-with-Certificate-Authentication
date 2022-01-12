@@ -66,14 +66,14 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
-			<version>5.3.2.RELEASE</version>
+			<version>5.3.13.RELEASE</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>5.2.3.RELEASE</version>
+			<version>5.2.19.RELEASE</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
